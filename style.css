@@ -1,0 +1,76 @@
+/* Custom property moderna, aun no soportada en todos los navegadores */
+@property --gradient-angle{
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+:root{
+    --black-pearl: #1e272e;
+    --cerise-red-50: #fef1f7;
+    --cerise-red-100: #fee5f0;
+    --cerise-red-200: #fecce3;
+    --cerise-red-300: #ffa2cb;
+    --cerise-red-400: #fe68a7;
+    --cerise-red-500: #f83c86;
+    --cerise-red-600: #e91f64;
+    --cerise-red-700: #ca0c47;
+    --cerise-red-800: #a70d3b;
+    --cerise-red-900: #8b1034;
+    --cerise-red-950: #55021a;
+}
+body{
+    background-color: var(--cerise-red-950);
+    background-color: var(--black-pearl);
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+}
+.card{
+    height: 60vh;
+    aspect-ratio: 1 / 1.5;
+    border-radius: .5rem;
+    background: var(--cerise-red-950);
+    position: relative;
+}
+.card::before,
+.card::after{
+    content: "";
+    position: absolute;
+    inset: -.5rem;
+    z-index: -1;
+    border-radius: inherit;
+    background: conic-gradient(
+        from var(--gradient-angle),
+        var(--cerise-red-700),
+        var(--cerise-red-800),
+        var(--cerise-red-900),
+        var(--cerise-red-800),
+        var(--cerise-red-700)
+    );
+    animation-name: rotation;
+    animation-duration: 20s;
+    animation-direction: linear;
+    animation-iteration-count: infinite;
+}
+.card::before{
+    filter: blur(3.5rem);
+}
+@keyframes rotation {
+    0%{
+        --gradient-angle: 0deg;
+    }
+    100%{
+        --gradient-angle: 360deg;
+    }
+}
+.card__title{
+    color: var(--cerise-red-100);
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 0;
+}
+.card__text{
+    color: var(--cerise-red-200);
+    padding: 1rem;
+    text-align: center;
+}
